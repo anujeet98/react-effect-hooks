@@ -8,7 +8,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log('reexecute')
     const userIsLoggedIn = localStorage.getItem("userIsLoggedIn");
     if(userIsLoggedIn === '1')
       setIsLoggedIn(true);
