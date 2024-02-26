@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import AuthContext from '../../contexts/auth-context';
 
-const Login = (props) => {
+const Login = () => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState('');
@@ -13,6 +14,8 @@ const Login = (props) => {
   const [enteredCollege, setEnteredCollege] = useState('');
   const [collegeIsValid, setCollegeIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
+
+  const authCtx = useContext(AuthContext);
 
   useEffect(()=>{
     setFormIsValid(enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollege.trim().length>0);
@@ -45,7 +48,7 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword);
+    authCtx.onLogin(enteredEmail, enteredPassword);
   };
 
   return (
