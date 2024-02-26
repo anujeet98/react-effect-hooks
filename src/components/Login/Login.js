@@ -54,32 +54,32 @@ const Login = (props) => {
     collegeValid: null
   });
 
-  // useEffect(()=>{
-  //   const validationTimer = setTimeout(()=>{
-  //     setFormIsValid(enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollege.trim().length>0);
-  //   },1000)
+  useEffect(()=>{
+    const validationTimer = setTimeout(()=>{
+      setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
+    },1000)
 
-  //   return () => {
-  //     clearTimeout(validationTimer);
-  //   }
-  // }, [enteredEmail, enteredPassword, enteredCollege] );
+    return () => {
+      clearTimeout(validationTimer);
+    }
+  }, [emailState, passwordState, collegeState] );
 
   
   const emailChangeHandler = (event) => {
     dispatchEmail({type:'EMAIL_INPUT', val: event.target.value});
-    setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
+    // setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
     // setEnteredEmail(event.target.value);
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({type:'PASSWORD_INPUT', val: event.target.value});
-    setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
+    // setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
     // setEnteredPassword(event.target.value);
   };
 
   const collegeChangeHandler = (event) => {
     dispatchCollege({type:'COLLEGE_INPUT', val: event.target.value});
-    setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
+    // setFormIsValid(emailState.emailIsValid && passwordState.passwordIsValid && collegeState.collegeIsValid);
     // setEnteredCollege(event.target.value);
   };
 
@@ -117,7 +117,6 @@ const Login = (props) => {
             id="email"
             value={emailState.emailValue}
             onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
           />
         </div>
         <div
